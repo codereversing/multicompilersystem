@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-compiler-csharp
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      compiler: csharp
+  template:
+    metadata:
+      labels:
+        compiler: csharp
+    spec:
+      containers:
+      - name: compiler-base-csharp
+        image: localhost:32000/compiler-base-csharp:latest
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "100m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
+        volumeMounts:
+        - mountPath: /home/user/code/share
+          name: io-shared-volume
+        lifecycle:
+          preStop:
+            exec:
+              command: ['sh', '-c', './shutdown.sh']
+      volumes:
+      - name: io-shared-volume
+        hostPath:
+          path: /home/user/Desktop/share
+          type: Directory
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: test-compiler-csharp
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: test-compiler-csharp
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 75
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: AverageValue
+        averageValue: 800Mi
+  

@@ -1,0 +1,16 @@
+{
+    "configuration": {
+        "inputpath": "${CODE_PATH}/share/${LANGUAGE}/input/${UNIQUE_ID}",
+        "outputpath": "${CODE_PATH}/share/${LANGUAGE}/output/${UNIQUE_ID}",
+	"workspacepath": "${CODE_PATH}/share/${LANGUAGE}/workspace/${UNIQUE_ID}",
+	"dependenciespath": "${CODE_PATH}/share/${LANGUAGE}/dependencies",
+        "argumentspath": "${CODE_PATH}/share/${LANGUAGE}/arguments/${UNIQUE_ID}",
+        "stdinpath": "${CODE_PATH}/share/${LANGUAGE}/stdin/${UNIQUE_ID}",
+        "interactivetimeout": "600s",
+	"relocatepath": "${CODE_PATH}/share/relocate/${UNIQUE_ID}",
+	"bootstrappath": "${CODE_PATH}/share/bootstrap",
+	"bootstrapscriptname": "bootstrap-common.sh",
+	"supportedlanguages": [${SUPPORTED_LANGUAGES}],
+        "ismultithreaded": ${IS_MULTITHREADED}
+    }
+}
