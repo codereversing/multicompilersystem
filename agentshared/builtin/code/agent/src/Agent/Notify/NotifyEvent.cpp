@@ -14,6 +14,10 @@ NotifyEvent::NotifyEvent(const NotifyConfiguration* config, const std::string& f
 	std::filesystem::path inputFilePath = fileName;
 	m_fileName = inputFilePath.filename();
 	m_language = inputFilePath.extension();
+	if (m_language.length() > 0 && m_language[0] == '.')
+	{
+		m_language.erase(0, 1);
+	}
 
 	m_index = m_folderNumber++;
 	std::string folderRelativePath = std::filesystem::path::preferred_separator + std::to_string(m_index);
