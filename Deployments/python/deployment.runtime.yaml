@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-compiler-python
+  name: test-compiler-py
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      compiler: python
+      compiler: py
   template:
     metadata:
       labels:
-        compiler: python
+        compiler: py
     spec:
       containers:
-      - name: compiler-base-python
-        image: localhost:32000/compiler-base-python:latest
+      - name: compiler-base-py
+        image: localhost:32000/compiler-base-py:latest
         resources:
           requests:
             memory: "512Mi"
@@ -39,12 +39,12 @@ spec:
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: test-compiler-python
+  name: test-compiler-py
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: test-compiler-python
+    name: test-compiler-py
   minReplicas: 1
   maxReplicas: 10
   metrics:

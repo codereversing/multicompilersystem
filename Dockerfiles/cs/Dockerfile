@@ -8,8 +8,8 @@ ARG USER=user
 ENV CODE_PATH=/home/${USER}/code
 
 # Setup language(s)
-ENV LANGUAGE=csharp
-ENV SUPPORTED_LANGUAGES=csharp
+ENV LANGUAGE=cs
+ENV SUPPORTED_LANGUAGES=cs
 ENV IS_MULTITHREADED=true
 
 # Setup PATH

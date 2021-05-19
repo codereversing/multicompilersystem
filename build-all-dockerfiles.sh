@@ -1,6 +1,6 @@
 #!/bin/bash
 
-languages="alpine c cpp csharp java python"
+languages="alpine c cpp cs java py"
 
 for language in $languages; do
     echo "Building image for ${language}"

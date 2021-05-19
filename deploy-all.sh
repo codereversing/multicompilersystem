@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LANGUAGES="c cpp csharp java python"
+LANGUAGES="c cpp cs java py"
 
 for LANGUAGE in $LANGUAGES; do
     CURRENT_USER=${USER}

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-languages="c cpp csharp java python"
+languages="c cpp cs java py"
 
 for language in $languages; do
     echo "Deleting deployment for ${language}"

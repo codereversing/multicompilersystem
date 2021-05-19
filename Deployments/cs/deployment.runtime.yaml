@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-compiler-csharp
+  name: test-compiler-cs
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      compiler: csharp
+      compiler: cs
   template:
     metadata:
       labels:
-        compiler: csharp
+        compiler: cs
     spec:
       containers:
-      - name: compiler-base-csharp
-        image: localhost:32000/compiler-base-csharp:latest
+      - name: compiler-base-cs
+        image: localhost:32000/compiler-base-cs:latest
         resources:
           requests:
             memory: "512Mi"
@@ -33,18 +33,18 @@ spec:
       volumes:
       - name: io-shared-volume
         hostPath:
-          path: /home/{{USER}}/Desktop/share
+          path: /home/user/Desktop/share
           type: Directory
 ---
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: test-compiler-csharp
+  name: test-compiler-cs
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: test-compiler-csharp
+    name: test-compiler-cs
   minReplicas: 1
   maxReplicas: 10
   metrics:
